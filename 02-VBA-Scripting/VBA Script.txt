@@ -10,7 +10,7 @@ Sub stockticker():
     Dim lastrow As Long
     Dim row As Long
     Dim x As Long
-    Dim totalvolume As LongLong
+    Dim totalvolume As Double
     Dim closeprice As Double
     Dim pricechange As Double
     Dim percentchange As Double
