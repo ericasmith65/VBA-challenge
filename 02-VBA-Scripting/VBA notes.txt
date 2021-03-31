@@ -1,0 +1,149 @@
+VBA In-Class
+'3/15/2021 2.1 Fundamentals of Programming Using Visual Basic: Day1
+	'create variable
+		dim ing1 as String
+		dim ing2 as String
+		dim budget as Double
+	'create variables all together
+		dim ing1, ing2, ing3 as String
+	'assign value to variable
+		ing1 = "Peanut Butter"
+		ing1 = "Jelly"
+		budget = 5.00
+	'array: a collection of items
+	'create array using "dim", name, give it the range, data type
+		dim ingredients(0 to 2) as String
+	'assign values in array *can only accept string characters because of data type*
+	'data type "Variant" will allow array to hold different types of variables
+		ingredients(0) = "Peanut Butter"
+		ingredients(1) = "Jelly"
+		ingredients(2) = "Bread"
+	'Conditionals: *If, *Then, Elseif, Else, and *End If...*required
+		If (argument) Then
+			argument
+		Else
+			counterargument
+		End If
+	'Loops: iterations as cycles of loop
+	'repeat the same step until i becomes 20
+		For i = 0 to 20
+		'each time spread more
+			spreadMore()
+	'add one to the value of i each time
+		Next i
+	'first step in vba is creating a sub routine, parenthesis are empty because we aren't accepting any inputs
+	'MsgBox function: MsgBox("string message")
+		Sub HelloWorld():
+			MsgBox("Hello, World.")
+		End Sub
+	'Inserting Data via Cells..example will fill cell A2 with the word Cat.
+		Cells(2, 1).Value = "Cat"
+	'Inserting Data via Range
+		Range("F1").Value = "Hi"
+	'Inserting Data Across Range
+		Range("F5:F7").Value = "Hello"
+	'Adding formatting to Cells with font color index chart example will change the font color in cell A1 to blue.  Red = 3, Green = 4...you can google chart
+		Cells(1, 1).Font.ColorIndex = 5
+	'Basic string concatenation
+		Dim title As String
+		Dim name As String
+		name = "Gandalf"
+		title = "The Great"
+		Dim fullname As String
+		fullname = name + " " + title
+		Msgbox(fullname)
+	'Integers and Doubles
+	'The main difference between integers and doubles: an integer won't hold onto decimal points and a double will.
+		Dim price As Double
+		Dim tax As Double
+		
+		price = 19.99
+		tax = 0.05
+		
+		total_price = price + (price * tax)
+		Msgbox(total_price)
+	'Booleans: simple true or false 
+		Dim does_money_grow_on_trees As Booleans
+		does_money_grow_on_trees = False
+	'combine string, integer, double in a message: str(name of integer/double variable)
+	'Arrays: Create Array, Fill Array with values, Retrieve specific elements of the array
+		Dim Ingredients(5) As String
+
+		Ingredients(0) = "Chocolate"
+		Ingredients(1) = "Peanut"
+		Ingredients(2) = "Jelly"
+		Ingredients(3) = "Macaroni"
+		Ingredients(4) = "Potato"
+		Ingredients(5) = "Dragonfruit"
+
+		MsgBox (Ingredients(4))
+		'message will read "Potato"
+	'create a split string arrays
+		'create string variable
+		Dim words_of_shakespear As String
+		words_of_shakespear = "To be or not to be."
+		
+		'convert string to array
+		Dim words() As String
+		words = split(words_of_shakespear, " ")
+		'first argument names the variable to be split, second argument identifies the delimeter
+		'words array now has six items in it.  words(0) is "to", words(1) is "be", etc.
+		
+'3/17/2021 2.2 Fundamentals of Programming Using Visual Basic: Day 2
+	
+	Sub ChickenNugs()
+	'Create a variable as an integer    
+	Dim i As Integer
+	'Creating a for loop where i starts at 11 and ends at 20
+        	For i = 11 To 20
+	'assigns cell values for each iteration of the loop
+	'cell A1, B1, and C1 read I will eat 11 Chicken Nuggets
+        	Cells(i - 10, 1).Value = "I will eat"
+        	Cells(i - 10, 2).Value = i
+        	Cells(i - 10, 3).Value = "Chicken Nuggets"
+        	Next i
+        End Sub
+'3/20/2021 Scripting Practice in VBA
+	'nested for loops: a loop within a loop. ex.1 i cycles through rows, j cycles through columns for each row. in this example the loop with end in cells(4, 3)
+	For i = 1 to 4 
+		For j = 1 to 3
+			MsgBox(Cells(i,j))
+		Next j
+	Next i
+
+	'Star Counter Example
+		'function that counts the number of rows used: Cells(Rows.Count, 1).End(xlUp).Row
+		Dim starcounter As Integer
+		'count the number of rows
+		lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+		'loop through each row
+		For i = 2 to lastrow
+			'initially set the starcounter to 0 for each row
+			starcounter = 0
+			'while in each row, loop through each column
+			For j = 4 to 8
+				If (Cells(i, j).Value = "Full-Star") Then
+					starcounter = starcounter + 1
+				End If
+			Next j
+			'insert value of starcounter into last column
+			Cells(i, 9).Value = starcounter
+		Next i
+	'Formatter Example...Google VBA Color Sorter
+		'Set the Font color to Red
+		Range("A1").Font.ColorIndex = 3
+
+		'Set the Cell Colors to Red
+		Range("A2").Interior.ColorIndex = 3
+	'Gradebook Example
+		'only using if then statements
+		'bonus
+		
+'Thoughts for assignment
+'Does vba have tuple?  --yes
+	'Dim tuple_name = ("ticker", #yearly change of given year#, %percent change of given year%, #total stock volume#)
+	'Don't think this is helpful
+'Use dim name(range) as Variant
+'dim row_count as Integer
+'row_count = Cells(Rows.Count, 1).End(xlUp).Row
+'For i = 1 to row_count
